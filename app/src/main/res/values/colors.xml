@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <!--  <color name="colorPrimary">@color/light_blue</color>
+    <color name="colorPrimaryDark">@color/blue</color>
+    <color name="colorAccent">#FF4081</color>-->
+
     <color name="colorPrimary">#106c99</color>
     <color name="colorPrimaryDark">#0D4A6A</color>
     <color name="colorAccent">#FC413D</color>
 
+
+
+    <color name="blue">#2196F3</color>
+    <color name="light_blue">#03A9F4</color>
     <color name="colorSunrise">#0D4A6A</color>
     <color name="colorSunset">#201D45</color>
-
+    <color name="windows_color">#F5F5F5</color>
     <color name="textHint">#8C8C8C</color>
-
+    <color name="nightColorPrimaryDark">#383838</color>
+    <color name="nightColorAccent">#a72b55</color>
+    <color name="nightTitleBackgroundColor">#383838</color>
+    <color name="black_light_10">#A0A0A0</color>
+    <color name="red">#EE7C6B</color>
+    <color name="bc">#363636</color>
+    <color name="white_dark">#f3f3f3</color>
+    <color name="gray_light">#cccccc</color>
+    <color name="gray">#777</color>
+    <color name="gray_dark">#383838</color>
+    <color name="gray_dark_dark">#393940</color>
+    <color name="green_light">#8e9ea4</color>
+    <color name="green">#34515c</color>
+    <color name="green_dark">#1e3e4a</color>
+    <color name="night_mask">#90000000</color>
 
     <color name="aboutIcon">#106c99</color>
     <!--多城市列表和卡片配色-->
@@ -29,5 +51,32 @@
 
     <color name="lineColor">#60d3d3d3</color>
     <color name="defaultTextColor">#6f6f6f</color>
+
+    <color name="blue_grey">#607D8B</color>
+    <color name="settings_sumary_font_color">#AAAAAA</color>
+    <color name="button_bg">@color/blue_grey</color>
+    <color name="primary">#E43F3F</color>
+    <color name="primary_dark">#E12929</color>
+    <color name="primary_darker">#CC1D1D</color>
+    <color name="accent">#FFFFFF</color>
+    <color name="md_purple_300">#BA68C8</color>
+    <color name="black">#000000</color>
+    <color name="jet">#222222</color>
+    <color name="oil">#333333</color>
+    <color name="monsoon">#777777</color>
+    <color name="jumbo">#888888</color>
+    <color name="aluminum">#999999</color>
+    <color name="base">#AAAAAA</color>
+    <color name="iron">#CCCCCC</color>
+    <color name="white">#FFFFFF</color>
+
+
+    <color name="translate">#00000000</color>
+    <color name="color_light_blue">#14acae</color>
+    <color name="mian_bg">#c3c9ce</color>
+    <color name="item_bg">#e0e4e7</color>
+
+
+
 
 </resources>

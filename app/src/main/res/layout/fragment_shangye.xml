@@ -1,0 +1,132 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xiecc.qianbao.modules.main.ui.shangyeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/widget_layout_sy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="Orientation">
+        <TableLayout
+            android:id="@+id/t1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:stretchColumns="*" >
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/ze1"
+                    style="@style/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ze1" >
+                </TextView>
+
+                <EditText  android:background="@android:drawable/edit_text"
+                    android:id="@+id/zev1"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:numeric="decimal"
+                    android:layout_width="200px"
+                    >
+                </EditText>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/nx1"
+                    style="@style/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nx1" >
+                </TextView>
+
+                <Spinner
+                    android:id="@+id/nxv1"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    >
+                </Spinner>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/lv1"
+                    style="@style/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lv1" >
+                </TextView>
+
+                <Spinner
+                    android:id="@+id/lvv1"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content" >
+                </Spinner>
+
+                <EditText android:background="@android:drawable/edit_text"
+                    android:id="@+id/lvvv1"
+                    android:layout_height="wrap_content"
+                    android:numeric="decimal"
+                    android:text="6.55"
+                    android:layout_width="wrap_content">
+                </EditText>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right" >
+
+                    <Button
+                        android:id="@+id/sub1"
+                        style="@style/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_sub1" >
+                    </Button>
+
+                    <Button
+                        android:id="@+id/cancel1"
+                        style="@style/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dip"
+                        android:text="@string/btn_cancel" >
+                    </Button>
+                </LinearLayout>
+
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+      <include layout="@layout/out"
+          android:id="@+id/tableRow12"/>
+</RelativeLayout>
