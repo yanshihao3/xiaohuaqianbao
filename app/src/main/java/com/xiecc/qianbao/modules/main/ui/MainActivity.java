@@ -2,6 +2,7 @@ package com.xiecc.qianbao.modules.main.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +12,7 @@ import me.majiajie.pagerbottomtabstrip.Controller;
 import me.majiajie.pagerbottomtabstrip.PagerBottomTabLayout;
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectListener;
 
+import com.umeng.analytics.MobclickAgent;
 import com.xiecc.qianbao.R;
 import com.xiecc.qianbao.base.BaseActivity;
 import com.xiecc.qianbao.common.utils.DoubleClickExit;
@@ -23,6 +25,9 @@ public class MainActivity extends BaseActivity  {
     private FragmentManager mFragmentManager;
 
     private Fragment mCurrentFragment;
+
+    private SharedPreferences sp;
+    private static  boolean flag;
     //int[] testColors1 = {0xFF7BA3A8,0xFFF4F3DE,0xFFBEAD92,0xFFF35A4A,0xFF5B4947};
        int[] testColors2 = {0xFF00796B,0xFF8D6E63,0xFF2196F3,0xFF607D8B,0xFFF57C00};
     int[] testColors = {0xFF00796B,0xFF5B4947,0xFF607D8B,0xFFF57C00,0xFFF57C00};
@@ -48,26 +53,29 @@ public class MainActivity extends BaseActivity  {
         initIcon();
     }
 
-
-
     /**
      * 初始化基础View
      */
     private void initView() {
         bottomTabLayout = (PagerBottomTabLayout) findViewById(R.id.tab);
         bottomTabLayout.builder().build().setBackgroundColor(getResources().getColor(R.color.windows_color));
-        mCurrentFragment=new MainFragment();
+        sp = getSharedPreferences("info", Context.MODE_PRIVATE);
+        String  url = sp.getString("url", "");
+            if(url.length()>0){
+                flag=true;
+                mCurrentFragment=new WebViewFragment();
+            }else {
+                mCurrentFragment=new MainFragment();
+            }
         mFragmentManager=getSupportFragmentManager();
         mFragmentManager.beginTransaction().add(R.id.app_item, mCurrentFragment).commit();
-       /* TabItemBuilder tabItemBuilder = new TabItemBuilder(this).create()
-                .setDefaultIcon(R.mipmap.home)
-                .setText("首页")
-                .build();*/
-        mController=bottomTabLayout.builder()
-                .addTabItem(R.mipmap.home, "首页")
-                .addTabItem(R.drawable.bug,"主页",testColors[0])
-                .addTabItem(android.R.drawable.btn_star, "帮助",testColors[3])
-                .build();
+            mController=bottomTabLayout.builder()
+                    .addTabItem(R.mipmap.home, "首页")
+                    .addTabItem(R.drawable.bug,"主页",testColors[0])
+                    .addTabItem(android.R.drawable.btn_star, "帮助",testColors[3])
+                    .build();
+
+
         mController.addTabItemClickListener(listener);
 
         //mViewPager.setOffscreenPageLimit(2);
@@ -93,11 +101,16 @@ public class MainActivity extends BaseActivity  {
     private String getFragmentName(int menuId) {
         switch (menuId) {
             case 1:
-                return MainFragment.class.getName();
+                if(flag){
+                    return WebViewFragment.class.getName();
+                }else {
+
+                    return MainFragment.class.getName();
+                }
            case 2:
                 return SecondFragment.class.getName();
             case 3:
-                return ThirdFragment.class.getName();
+                    return ThirdFragment.class.getName();
             default:
                 return null;
         }
@@ -168,7 +181,14 @@ public class MainActivity extends BaseActivity  {
             }
     }
 
-
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

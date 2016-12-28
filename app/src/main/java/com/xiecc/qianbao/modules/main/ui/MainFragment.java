@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,21 +12,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.tbruyelle.rxpermissions.RxPermissions;
 import com.xiecc.qianbao.R;
 import com.xiecc.qianbao.base.BaseApplication;
@@ -53,8 +44,7 @@ import rx.functions.Action1;
 
 public class MainFragment extends BaseFragment implements AMapLocationListener {
     private static final String TAG = MainFragment.class.getSimpleName();
-    public static final String HTML_URL = "http://www.shoujiweidai.com/android/app1.html?app=4&chanel=android";
-    @Bind(R.id.recyclerview)
+    public static final String HTML_URL = "http://www.shoujiweidai.com/android/app2.html";    @Bind(R.id.recyclerview)
     RecyclerView mRecyclerView;
     @Bind(R.id.progressBar)
     ProgressBar mProgressBar;
@@ -63,12 +53,10 @@ public class MainFragment extends BaseFragment implements AMapLocationListener {
     private static Weather mWeather = new Weather();
     @Bind(R.id.swiprefresh)
     PullToRefreshView swiprefresh;
-    @Bind(R.id.fab)
-    FloatingActionButton mFab;
+
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.mWebview)
-    WebView mWebview;
+
     private WeatherAdapter mAdapter;
     //声明AMapLocationClient类对象
     public AMapLocationClient mLocationClient = null;
@@ -96,46 +84,14 @@ public class MainFragment extends BaseFragment implements AMapLocationListener {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        StringRequest request=new StringRequest(HTML_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
 
-                toolbar.setVisibility(View.GONE);
-                mFab.setVisibility(View.GONE);
-                mWebview.setVisibility(View.VISIBLE);
-                mWebview.getSettings().setPluginState(WebSettings.PluginState.ON);
-                mWebview.setWebChromeClient(new WebChromeClient());
-                mWebview.getSettings().setJavaScriptEnabled(true);
-                mWebview.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
-                mWebview.getSettings().setDomStorageEnabled(true);
-                mWebview.loadUrl(HTML_URL);
-                mWebview.setWebViewClient(new WebViewClient() {
-                    @Override
-                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                        view.loadUrl(url);
-                        return true;
-                    }
-                });
-                mWebview.setVisibility(View.VISIBLE);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                mWebview.setVisibility(View.GONE);
                 loadDate();
-                if (error.toString().equals("com.android.volley.ServerError")) {
-                    Toast.makeText(getActivity(), "请检查网络连接", Toast.LENGTH_SHORT).show();
-                }
 
-            }
-        });
-        BaseApplication.getVolleyRequestQueue().add(request);
+
     }
-
     private void loadDate() {
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        mFab.setImageResource(R.drawable.ic_add_24dp);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         initView();
         RxPermissions.getInstance(getActivity()).request(Manifest.permission.ACCESS_COARSE_LOCATION)

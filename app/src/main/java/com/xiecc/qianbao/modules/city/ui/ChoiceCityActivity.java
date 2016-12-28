@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+
+import com.umeng.analytics.MobclickAgent;
 import com.xiecc.qianbao.R;
 import com.xiecc.qianbao.base.C;
 import com.xiecc.qianbao.base.ToolbarActivity;
@@ -174,7 +176,14 @@ public class ChoiceCityActivity extends ToolbarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     /**
      * 查询选中省份的所有城市，从数据库查询
      */

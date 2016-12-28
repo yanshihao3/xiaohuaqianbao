@@ -45,7 +45,6 @@ public class SecondFragment extends Fragment {
         mHomePagerAdapter.addTab(new HunHeFragment(), "混合金贷款");
         viewPager.setAdapter(mHomePagerAdapter);
         tabLayout.setupWithViewPager(viewPager, false);
-
     }
 
     @Override
