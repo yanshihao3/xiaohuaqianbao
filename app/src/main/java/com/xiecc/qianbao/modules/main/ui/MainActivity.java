@@ -16,6 +16,7 @@ import com.umeng.analytics.MobclickAgent;
 import com.xiecc.qianbao.R;
 import com.xiecc.qianbao.base.BaseActivity;
 import com.xiecc.qianbao.common.utils.DoubleClickExit;
+import com.xiecc.qianbao.common.utils.SPUtils;
 import com.xiecc.qianbao.common.utils.SharedPreferenceUtil;
 import com.xiecc.qianbao.common.utils.ToastUtil;
 
@@ -59,9 +60,8 @@ public class MainActivity extends BaseActivity  {
     private void initView() {
         bottomTabLayout = (PagerBottomTabLayout) findViewById(R.id.tab);
         bottomTabLayout.builder().build().setBackgroundColor(getResources().getColor(R.color.windows_color));
-        sp = getSharedPreferences("info", Context.MODE_PRIVATE);
-        String  url = sp.getString("url", "");
-            if(url.length()>0){
+        boolean url1 = SPUtils.contains(this, "url");
+        if(url1){
                 flag=true;
                 mCurrentFragment=new WebViewFragment();
             }else {
@@ -69,13 +69,20 @@ public class MainActivity extends BaseActivity  {
             }
         mFragmentManager=getSupportFragmentManager();
         mFragmentManager.beginTransaction().add(R.id.app_item, mCurrentFragment).commit();
-            mController=bottomTabLayout.builder()
-                    .addTabItem(R.mipmap.home, "首页")
-                    .addTabItem(R.drawable.bug,"主页",testColors[0])
-                    .addTabItem(android.R.drawable.btn_star, "帮助",testColors[3])
-                    .build();
 
 
+            if(flag){
+                mController=bottomTabLayout.builder()
+                        .addTabItem(R.mipmap.home, "首页")
+                        .addTabItem(R.drawable.bug,"主页",testColors[0])
+                        .addTabItem(android.R.drawable.btn_star, "帮助",testColors[3])
+                        .build();
+            }else {
+                mController=bottomTabLayout.builder()
+                        .addTabItem(R.mipmap.home, "首页")
+                        .addTabItem(R.drawable.bug,"主页",testColors[0])
+                        .build();
+            }
         mController.addTabItemClickListener(listener);
 
         //mViewPager.setOffscreenPageLimit(2);
@@ -110,7 +117,11 @@ public class MainActivity extends BaseActivity  {
            case 2:
                 return SecondFragment.class.getName();
             case 3:
+                if(flag) {
                     return ThirdFragment.class.getName();
+                }else {
+                    return null;
+                }
             default:
                 return null;
         }

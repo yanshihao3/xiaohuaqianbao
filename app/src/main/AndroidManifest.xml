@@ -21,7 +21,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.xiecc.qianbao.base.BaseApplication"
+        android:name=".base.BaseApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/logo"
@@ -37,10 +37,10 @@
             android:value="6c5241a92d395baa70c227300f5db822" />
 
         <service android:name="com.amap.api.location.APSService" />
-        <service android:name="com.xiecc.qianbao.modules.service.AutoUpdateService" />
+        <service android:name=".modules.service.AutoUpdateService" />
 
         <activity
-            android:name="com.xiecc.qianbao.modules.launch.FirstActivity"
+            android:name=".modules.launch.FirstActivity"
             android:theme="@style/FirstTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,12 +49,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.xiecc.qianbao.modules.main.ui.MainActivity"
+            android:name=".modules.main.ui.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.xiecc.qianbao.modules.city.ui.ChoiceCityActivity"
+            android:name=".modules.city.ui.ChoiceCityActivity"
             android:screenOrientation="portrait" />
 
         <meta-data
@@ -64,7 +64,7 @@
             android:name="UMENG_CHANNEL"
             android:value="xinhe" />
 
-        <activity android:name="com.xiecc.qianbao.modules.main.ui.WelcomeGuideActivity"></activity>
+        <activity android:name=".modules.main.ui.GuideActivity"></activity>
     </application>
 
 </manifest>

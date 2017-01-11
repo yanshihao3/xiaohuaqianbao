@@ -47,7 +47,7 @@ retrolambda {
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-
+    compile 'cn.bingoogolapple:bga-banner:2.1.6@aar'
     compile 'com.github.ybq:Android-SpinKit:1.1.0'
     compile 'com.android.support:appcompat-v7:25.0.1'
     compile 'com.android.support:design:25.0.1'

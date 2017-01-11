@@ -18,6 +18,7 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.xiecc.qianbao.R;
+import com.xiecc.qianbao.common.utils.SPUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,13 +31,10 @@ public class WebViewFragment extends Fragment {
 
     @Bind(R.id.mWebView)
     WebView mWebView;
-    private SharedPreferences sp;
     private boolean flag = false;
-
     public WebViewFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,8 +48,7 @@ public class WebViewFragment extends Fragment {
 
     private void initView() {
         TextNet();
-        sp = getActivity().getSharedPreferences("info", Context.MODE_PRIVATE);
-        String url = sp.getString("url", "");
+        String url = (String) SPUtils.get(getActivity(), "url", "");
         mWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
         mWebView.setWebChromeClient(new WebChromeClient());
         mWebView.getSettings().setJavaScriptEnabled(true);
